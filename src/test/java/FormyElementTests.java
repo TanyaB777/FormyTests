@@ -3,9 +3,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
-
 import static org.testng.Assert.*;
 
 public class FormyElementTests extends BaseTest {
@@ -71,7 +69,7 @@ public class FormyElementTests extends BaseTest {
     }
 
     @Test
-    public void SwitchToAlertTest() {
+    public void switchToAlertTest() {
 
         driver.get(BASE_URL + "/switch-window");
 
