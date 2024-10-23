@@ -3,7 +3,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
+
 import java.time.Duration;
+
 import static org.testng.Assert.*;
 
 public class FormyElementTests extends BaseTest {
@@ -54,10 +56,15 @@ public class FormyElementTests extends BaseTest {
 
         String originalHandle = driver.getWindowHandle();
 
-        for (String nextHandle : driver.getWindowHandles()) {
-            driver.switchTo().window(nextHandle);
-            assertEquals(driver.getWindowHandle(), nextHandle);
+        String nextHandle = "";
+
+        for (String handle : driver.getWindowHandles()) {
+            if (!nextHandle.equals(originalHandle)) {
+                driver.switchTo().window(nextHandle);
+                nextHandle = handle;
+            }
         }
+        assertEquals(driver.getWindowHandle(), nextHandle);
 
         driver.switchTo().window(originalHandle);
         assertEquals(driver.getWindowHandle(), originalHandle);
@@ -73,9 +80,7 @@ public class FormyElementTests extends BaseTest {
 
         Alert alert = driver.switchTo().alert();
 
-        String alertText = alert.getText();
-
-        assertEquals(alertText, "This is a test alert!");
+        assertEquals(alert.getText(), "This is a test alert!");
 
         alert.accept();
 
@@ -177,7 +182,8 @@ public class FormyElementTests extends BaseTest {
     @Test
     public void fileUploadTest() {
 
-        final String FILE_TO_UPLOAD= "file-to-upload.png";
+        final String FILE_TO_UPLOAD = "file-to-upload.png";
+
         driver.get(BASE_URL + "/fileupload");
 
         WebElement fileUploadField = driver.findElement(By.id("file-upload-field"));
