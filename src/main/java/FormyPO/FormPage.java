@@ -6,32 +6,24 @@ import org.openqa.selenium.WebDriver;
 
 public class FormPage {
 
+    public static final By FIRST_NAME_INPUT = By.id("first-name");
+    public static final By LAST_NAME_INPUT = By.id("last-name");
+    public static final By JOB_TITLE_INPUT = By.id("job-title");
+    public static final By RADIO_BUTTON_2 = By.id("radio-button-2");
+    public static final By CHECKBOX_2 = By.id("checkbox-2");
+    public static final By DROPDOWN_OPTION_1 = By.cssSelector("option[value='1']");
+    public static final By DATE_PICKER = By.id("datepicker");
+    public static final By SUBMIT_BUTTON = By.cssSelector(".btn.btn-lg.btn-primary");
+
     public void submitForm(WebDriver driver) {
 
-        driver.findElement(By.id("first-name")).
-                sendKeys("John");
-
-        driver.findElement(By.id("last-name")).
-                sendKeys("Doe");
-
-        driver.findElement(By.id("job-title")).
-                sendKeys("QA Engineer");
-
-        driver.findElement(By.id("radio-button-2")).
-                click();
-
-        driver.findElement(By.id("checkbox-2")).
-                click();
-
-        driver.findElement(By.cssSelector("option[value='1']")).
-                click();
-
-        driver.findElement(By.id("datepicker")).
-                sendKeys("05/28/2019");
-        driver.findElement(By.id("datepicker")).
-                sendKeys(Keys.RETURN);
-
-        driver.findElement(By.cssSelector(".btn.btn-lg.btn-primary")).
-                click();
+        driver.findElement(FIRST_NAME_INPUT).sendKeys("John");
+        driver.findElement(LAST_NAME_INPUT).sendKeys("Doe");
+        driver.findElement(JOB_TITLE_INPUT).sendKeys("QA Engineer");
+        driver.findElement(RADIO_BUTTON_2).click();
+        driver.findElement(CHECKBOX_2).click();
+        driver.findElement(DROPDOWN_OPTION_1).click();
+        driver.findElement(DATE_PICKER).sendKeys("05/28/2019", Keys.RETURN);
+        driver.findElement(SUBMIT_BUTTON).click();
     }
 }
