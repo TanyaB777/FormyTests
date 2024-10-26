@@ -10,8 +10,12 @@ public class FormyPOTests extends BaseTest {
 
         driver.get(BASE_URL + "/form");
 
-        FormPage formPage = new FormPage();
-        formPage.submitForm(driver);
+        FormPage formPage = new FormPage(driver);
+
+        formPage.fillPersonalInfo();
+        formPage.setPreferences();
+        formPage.fillExtraDetails();
+        formPage.submitFormButton();
 
         ConfirmationPage confirmationPage = new ConfirmationPage();
         confirmationPage.waitForAlertBanner(driver);
